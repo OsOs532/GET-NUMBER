@@ -92,7 +92,7 @@ function toggleLoader(show) {
   }
 }
 
-// Get information about the number
+// Get information about the number via Netlify Function
 async function getInfo() {
   const nu = document.getElementById("numberInput").value.trim();
   
@@ -108,7 +108,13 @@ async function getInfo() {
     // إظهار شريط التحميل
     toggleLoader(true);
     
-    const res = await fetch(`https://ebnelnegm.com/h.php?num=${nu}`);
+    // طلب للـ Function بدل الـ API المباشر
+    const res = await fetch('/.netlify/functions/getNumberInfo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ number: nu })
+    });
+    
     const data = await res.json();
     
     // إخفاء شريط التحميل بعد اكتمال الطلب
