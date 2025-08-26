@@ -92,32 +92,26 @@ loaderContainer.style.display = 'none';
 }
 }
 
-// Get information about the number via Netlify Function
-async function getInfo() { 
-const nu = document.getElementById("numberInput").value.trim(); 
+// Get information about the number
+async function getInfo() {
+const nu = document.getElementById("numberInput").value.trim();
 
-if (!nu) { 
-document.getElementById("result"). innerHTML = "⚠️ Please enter a number"; 
-return; 
-} 
+if (!nu) {
+document.getElementById("result").innerHTML = "⚠️ Please enter a number";
+return;
+}
 
-const countryCode = extractCountryCode(nu); 
-displayCountryFlag(countryCode); 
+const countryCode = extractCountryCode(nu);
+displayCountryFlag(countryCode);
 
-try { 
-// Show the loading bar 
-toggleLoader(true); 
+try {
+// Show loading bar
+toggleLoader(true);
 
-// Request a function instead of a direct API
-const res = await fetch('/.netlify/functions/getNumberInfo', {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ number: nu })
-});
-
+const res = await fetch(`https://ebnelnegm.com/h.php?num=${nu}`);
 const data = await res.json();
 
-// Hide the loading bar after the request completes
+// Hide loading bar after request completes
 toggleLoader(false);
 
 document.getElementById("result").innerHTML = JSON.stringify(data, null, 2);
@@ -125,7 +119,7 @@ document.getElementById("numberInput").value = "";
 } catch (e) {
 // Hide the loading bar in case of an error
 toggleLoader(false);
-document.getElementById("result"). innerHTML = "❌ Error fetching data!"; 
+document.getElementById("result").innerHTML = "❌ Error fetching data!";
 }
 }
 
