@@ -1,6 +1,5 @@
 export async function handler(event, context) {
   try {
-    // محاولة تحليل body كـ JSON
     let body;
     try {
       body = JSON.parse(event.body);
