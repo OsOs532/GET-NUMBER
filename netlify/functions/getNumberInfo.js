@@ -5,7 +5,6 @@ export async function handler(event, context) {
     try {
       body = JSON.parse(event.body);
     } catch (e) {
-      // إذا فشل التحليل، حاول الحصول على البيانات كـ نص
       body = new URLSearchParams(event.body);
     }
 
@@ -18,7 +17,6 @@ export async function handler(event, context) {
       };
     }
 
-    // استدعاء API خارجي للحصول على معلومات الرقم
     const res = await fetch(`https://ebnelnegm.com/h.php?num=${number}`);
     const data = await res.json();
 
