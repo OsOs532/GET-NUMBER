@@ -31,12 +31,10 @@ function initMatrix() {
   setInterval(draw, 35);
 }
 
-// Handle Enter key press
 function handleKeyPress(event) {
   if (event.key === "Enter") getInfo();
 }
 
-// Country codes mapping
 const countryCodes = {
   "20": "eg", "966": "sa", "971": "ae", "962": "jo", "973": "bh",
   "964": "iq", "965": "kw", "968": "om", "974": "qa", "963": "sy",
@@ -44,7 +42,6 @@ const countryCodes = {
   "249": "sd", "253": "dj", "252": "so", "222": "mr"
 };
 
-// Extract country code from phone number
 function extractCountryCode(phoneNumber) {
   const cleanedNumber = phoneNumber.replace(/\D/g, "");
   for (const code in countryCodes) {
@@ -53,7 +50,6 @@ function extractCountryCode(phoneNumber) {
   return null;
 }
 
-// Display country flag
 function displayCountryFlag(countryCode) {
   const flagElement = document.getElementById("countryFlag");
   if (countryCode && countryCodes[countryCode]) {
@@ -65,7 +61,6 @@ function displayCountryFlag(countryCode) {
   } else flagElement.style.display = "none";
 }
 
-// Loading bar control
 function toggleLoader(show) {
   const loaderContainer = document.getElementById("loaderContainer");
   const resultDiv = document.getElementById("result");
@@ -75,7 +70,6 @@ function toggleLoader(show) {
   } else loaderContainer.style.display = "none";
 }
 
-// Get number info via Netlify Function
 async function getInfo() {
   const nu = document.getElementById("numberInput").value.trim();
   if (!nu) {
@@ -107,11 +101,31 @@ async function getInfo() {
   }
 }
 
-// Initialize application
+function setupHelpModal() {
+  const modal = document.getElementById("helpModal");
+  const btn = document.getElementById("helpBtn");
+  const span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function() {
+    modal.classList.add("show");
+  }
+
+  span.onclick = function() {
+    modal.classList.remove("show");
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.classList.remove("show");
+    }
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   initMatrix();
   document.getElementById("numberInput").addEventListener("keypress", handleKeyPress);
   document.getElementById("searchButton").addEventListener("click", getInfo);
+  setupHelpModal(); 
 
   window.addEventListener("resize", function () {
     canvas.height = window.innerHeight;
