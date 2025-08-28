@@ -15,12 +15,35 @@
     <input id="numberInput" type="text" placeholder="Enter number please">
     <button id="searchButton">🔎 Search</button>
     
+    <button id="helpBtn" class="help-button">📋 تعليمات الاستخدام</button>
+    
     <div id="loaderContainer" class="loader-container">
       <div class="loader"></div>
       <div class="loader-text">Searching database...</div>
     </div>
     
     <div id="result"></div>
+  </div>
+
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>📋 تعليمات الاستخدام</h2>
+      <div class="instructions">
+        <div class="instruction-item">
+          <span class="bullet">1</span>
+          <p>أدخل الرقم بدون رمز الدولة للتعرف علي صاحب الرقم</p>
+        </div>
+        <div class="instruction-item">
+          <span class="bullet">2</span>
+          <p>لو كتبت رمز الدولة هيعرفك اسم الدولةً</p>
+        </div>
+        <div class="instruction-item">
+          <span class="bullet">3</span>
+          <p>يتم جلب المعلومات من قواعد البيانات تلقائيا</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -44,5 +67,4 @@
 
   <script src="script.js"></script>
 </body>
-
 </html>
