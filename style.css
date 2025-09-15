@@ -45,7 +45,6 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-gradient);
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
@@ -832,4 +831,5 @@ body {
         font-size: 0.8rem;
     }
 }
+
 
