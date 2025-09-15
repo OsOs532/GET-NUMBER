@@ -11,9 +11,15 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
+<video autoplay muted loop id="bg-video">
+    <source src="background 3.mp4" type="video/mp4">
+    متصفحك لا يدعم تشغيل الفيديو.
+  </video>
 
-    <!-- Header -->
+  <div class="container">
+  </div>
+
+  <div class="container">
     <header class="header">
       <div class="logo">
         <img src="Profile.jpg" alt="Logo" class="logo-icon">
@@ -21,7 +27,6 @@
       </div>
     </header>
 
-    <!-- Search Section -->
     <div class="search-section">
       <div class="search-container">
         <div class="phone-input-container">
@@ -40,18 +45,15 @@
       </div>
     </div>
 
-    <!-- Result Section -->
     <div class="result-section" id="resultSection" style="display: none;">
       <div class="result-card" id="resultCard"></div>
     </div>
 
-    <!-- Loading -->
     <div class="loading" id="loading" style="display: none;">
       <div class="loading-spinner"></div>
       <p>جاري البحث عن صاحب الرقم...</p>
     </div>
 
-    <!-- No Results -->
     <div class="no-results" id="noResults" style="display: none;">
       <div class="no-results-icon">❌</div>
       <h3>لم يتم العثور على معلومات</h3>
@@ -65,7 +67,6 @@
       </div>
     </div>
 
-    <!-- Features -->
     <div class="features-section">
       <h3 class="features-title">مميزات الخدمة</h3>
       <div class="features-grid">
@@ -88,7 +89,6 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <div class="socials">
       <a href="https://www.facebook.com/profile.php?id=100033771226713" target="_blank" class="social-icon facebook">
@@ -107,5 +107,6 @@
   <script src="main.js"></script>
 </body>
 </html>
+
 
 
