@@ -51,7 +51,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;       
-    background: #000; 
+    background: none; 
 }
 
 .container {
@@ -380,7 +380,7 @@ body {
   height: 100%;
   object-fit: cover; 
   z-index: -1;
-  background: #000;
+  background: none;
 }
 
 @keyframes shake {
@@ -836,6 +836,7 @@ body {
         font-size: 0.8rem;
     }
 }
+
 
 
 
