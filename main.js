@@ -1,4 +1,3 @@
-// main.js - Version مبسطة
 async function getInfo() {
   const nu = document.getElementById("phoneInput").value.trim();
   const resultCard = document.getElementById("resultCard");
@@ -66,4 +65,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("searchBtn").addEventListener("click", getInfo);
 });
+
 
