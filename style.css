@@ -362,106 +362,91 @@ body {
   font-size: 0.95rem;
 }
 
-/* تحسينات للشاشات المتوسطة (تابلت وما شابه) */
-@media (max-width: 768px) {
-    /* التعديلات الخاصة بالتابلت */
-    .logo-text {
-        font-size: 1.6rem;
-    }
+    /* تحسينات للوضع الأفقي على الهواتف */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .container {
+                padding: var(--spacing-sm) 0;
+            }
+            
+            .header {
+                margin-bottom: var(--spacing-md);
+            }
+            
+            .logo {
+                flex-direction: row;
+                gap: var(--spacing-sm);
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .subtitle {
+                display: none;
+            }
+            
+            .search-section {
+                margin-bottom: var(--spacing-md);
+            }
+            
+            .search-container {
+                padding: var(--spacing-sm);
+            }
+            
+            .result-section,
+            .recent-section,
+            .features-section {
+                margin-bottom: var(--spacing-md);
+            }
+        }
 
-    .search-container {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
+        /* تحسينات للشاشات الصغيرة جدًا */
+        @media (max-width: 320px) {
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .country-code {
+                min-width: 50px;
+                font-size: 0.8rem;
+            }
+            
+            .phone-input {
+                font-size: 0.8rem;
+            }
+            
+            .search-btn {
+                font-size: 0.9rem;
+            }
+        }
 
-    .search-btn {
-        width: 100%;
-    }
-}
+        /* تحسينات للتفاعل على الهواتف */
+        @media (hover: none) {
+            .search-btn:hover,
+            .detail-item:hover,
+            .recent-item:hover,
+            .feature-card:hover {
+                transform: none;
+            }
+            
+            .search-btn:active,
+            .detail-item:active,
+            .recent-item:active {
+                transform: scale(0.98);
+            }
+        }
 
-/* تحسينات للشاشات الصغيرة جدًا (موبايلات) */
-@media (max-width: 480px) {
-    .logo-text {
-        font-size: 1.4rem;
-    }
-
-    .country-code {
-        min-width: 55px;
-        font-size: 0.85rem;
-    }
-
-    .phone-input {
-        font-size: 0.85rem;
-    }
-
-    .search-btn {
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
-    }
-}
-
-/* تحسينات للوضع الأفقي على الهواتف */
-@media (max-height: 500px) and (orientation: landscape) {
-    .container {
-        padding: var(--spacing-sm) 0;
-    }
-
-    .header {
-        margin-bottom: var(--spacing-md);
-    }
-
-    .logo {
-        flex-direction: row;
-        gap: var(--spacing-sm);
-    }
-
-    .logo-text {
-        font-size: 1.5rem;
-    }
-
-    .logo-icon {
-        width: 50px;
-        height: 50px;
-    }
-
-    .subtitle {
-        display: none;
-    }
-
-    .search-section {
-        margin-bottom: var(--spacing-md);
-    }
-
-    .search-container {
-        padding: var(--spacing-sm);
-    }
-
-    .result-section,
-    .recent-section,
-    .features-section {
-        margin-bottom: var(--spacing-md);
-    }
-
-    .detail-icon {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9rem;
-    }
-
-    .social-icon {
-        font-size: 0.85rem;
-        padding: 0.5rem 1rem;
-        gap: 6px;
-    }
-
-    .result-avatar {
-        width: 60px;
-        height: 60px;
-        font-size: 1.4rem;
-    }
-}
-
-
+        /* منع تكبير الصفحة تلقائيًا عند التركيز على الحقول في iOS */
+        @supports (-webkit-touch-callout: none) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20% { transform: translateX(-6px); }
@@ -810,4 +795,5 @@ body {
         --bg-secondary: #ffffff;
     }
 }
+
 
