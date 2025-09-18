@@ -40,7 +40,7 @@ async function getInfo() {
       <div class="result-header">
         <div class="result-avatar">${initials}</div>
         <div class="result-info">
-          <h2>${person.name || "❤️يتم تحديث الموقع لذلك الخدمة معطلة مؤقتا❤️"}</h2>
+          <h2>${person.name || "❤️يتم تحديث الموقع لذلك الخدمة معطلة لمدة ساعة❤️"}</h2>
           <div class="result-phone">${person.number || nu}</div>
         </div>
       </div>
@@ -65,5 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("searchBtn").addEventListener("click", getInfo);
 });
+
 
 
