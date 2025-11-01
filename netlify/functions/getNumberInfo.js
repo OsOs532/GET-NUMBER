@@ -65,7 +65,7 @@ export async function handler(event, context) {
         type: type,
         location: "Cairo",
         internationalFormat: `+20${cleanNumber}`,
-        name: "❤️يتم تحديث الموقع لذلك الخدمة معطلة لمدة ساعة❤️",
+        name: "❤️تم ايقاف الموقع لان بعض الاشخاص يبيعون الموقع وهو مجاني اصلا❤️",
         message: "Data from API reserve",
         timestamp: new Date().toISOString()
       };
