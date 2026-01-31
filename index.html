@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Number Lookup</title>
+  <title>Os Os Lookup | فحص الأرقام</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="cover.png">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1719078086543598"
-     crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1719078086543598" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="bg-blur-circle circle-1"></div>
+  <div class="bg-blur-circle circle-2"></div>
 
+  <div class="container">
     <header class="header">
       <div class="logo">
-        <img src="Profile.jpg" alt="Logo" class="logo-icon">
+        <div class="logo-inner">
+          <img src="Profile.jpg" alt="Logo" class="logo-icon">
+        </div>
         <h1 class="logo-text">Os Os Lookup</h1>
       </div>
     </header>
@@ -23,18 +27,23 @@
     <div class="search-section">
       <div class="search-container">
         <div class="phone-input-container">
-          <input 
-            type="tel" 
-            id="phoneInput" 
-            class="phone-input" 
-            placeholder=" ...أدخل رقم الهاتف"
-          >
+          <div class="input-with-icon">
+            <i class="fas fa-phone-alt"></i>
+            <input 
+              type="tel" 
+              id="phoneInput" 
+              class="phone-input" 
+              placeholder=" ...أدخل رقم الهاتف"
+            >
+          </div>
           <button class="search-btn" id="searchBtn">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"><i class="fas fa-search"></i></span>
             <span class="search-text">Search</span>
           </button>
         </div>
-        <div class="input-hint">(●'◡'●) ادخل الرقم بدون رمز الدولة (●'◡'●)</div>
+        <div class="input-hint">
+          <i class="fas fa-info-circle"></i> ادخل الرقم بدون رمز الدولة (●'◡'●)
+        </div>
       </div>
     </div>
 
@@ -48,15 +57,17 @@
     </div>
 
     <div class="no-results" id="noResults" style="display: none;">
-      <div class="no-results-icon">❌</div>
-      <h3>لم يتم العثور على معلومات</h3>
-      <p>عذراً، لم نتمكن من العثور على معلومات لهذا الرقم</p>
-      <div class="suggestions">
-        <h4>تأكد من:</h4>
-        <ul>
-          <li> كتابة الرقم بشكل صحيح بدون رمز الدولة</li>
-          <li>عدم وجود مسافات أو رموز إضافية</li>
-        </ul>
+      <div class="no-results-card">
+        <div class="no-results-icon">❌</div>
+        <h3>لم يتم العثور على معلومات</h3>
+        <p>عذراً، لم نتمكن من العثور على معلومات لهذا الرقم</p>
+        <div class="suggestions">
+          <h4>تأكد من:</h4>
+          <ul>
+            <li> كتابة الرقم بشكل صحيح بدون رمز الدولة</li>
+            <li>عدم وجود مسافات أو رموز إضافية</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -64,17 +75,17 @@
       <h3 class="features-title">مميزات الخدمة</h3>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
           <h4>بحث سريع</h4>
           <p>نتائج فورية في ثوانٍ معدودة</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🔒</div>
+          <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
           <h4>آمن ومحمي</h4>
           <p>حماية كاملة لخصوصيتك</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📊</div>
+          <div class="feature-icon"><i class="fas fa-database"></i></div>
           <h4>قاعدة بيانات كبيرة</h4>
           <p>ملايين الأرقام المسجلة</p>
         </div>
@@ -94,9 +105,8 @@
         <i class="fab fa-linkedin-in"></i><span>LinkedIn</span>
       </a>
     </div>
-    <div class="footer-text">All rights reserved © Mohamed Osama</div>
+    <div class="footer-text">All rights reserved © 2026 Mohamed Osama</div>
   </footer>
   <script src="main.js"></script>
 </body>
 </html>
-
