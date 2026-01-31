@@ -5,11 +5,7 @@ async function getInfo() {
   const loading = document.getElementById("loading");
   const noResults = document.getElementById("noResults");
 
-  if (!nu) {
-    resultSection.style.display = "none";
-    noResults.style.display = "block";
-    return;
-  }
+  if (!nu) return;
 
   loading.style.display = "block";
   resultSection.style.display = "none";
@@ -22,27 +18,30 @@ async function getInfo() {
       body: JSON.stringify({ number: nu })
     });
 
-    if (!res.ok) throw new Error("خطأ في الاتصال بالسيرفر");
-
-    const person = await res.json();
+    const data = await res.json();
     loading.style.display = "none";
 
-    // التحقق من وجود اسم، وإلا نضع اسم افتراضي
-    const displayName = person.name && person.name.trim() !== "" ? person.name : "اسم غير مسجل";
-    
-    // إعداد الأحرف الأولى بشكل آمن
-    let initials = "??";
-    if (displayName !== "اسم غير مسجل") {
-      const words = displayName.trim().split(/\s+/);
-      initials = words[0].charAt(0).toUpperCase();
-      if (words.length > 1) initials += words[1].charAt(0).toUpperCase();
+    // استخراج البيانات: لو مصفوفة ناخد أول عنصر، لو كائن ناخده هو
+    const person = Array.isArray(data) ? data[0] : data;
+
+    // التأكد من وجود اسم (بندور في كذا مفتاح احتياطي)
+    const name = person.name || person.FullName || person.contact_name;
+
+    if (!name) {
+      noResults.style.display = "block";
+      return;
     }
+
+    // عرض النتيجة
+    let initials = name.trim().charAt(0).toUpperCase();
+    const parts = name.trim().split(" ");
+    if (parts.length > 1) initials += parts[parts.length - 1].charAt(0).toUpperCase();
 
     resultCard.innerHTML = `
       <div class="result-header">
         <div class="result-avatar">${initials}</div>
         <div class="result-info">
-          <h2>${displayName}</h2>
+          <h2>${name}</h2>
           <div class="result-phone">${person.number || nu}</div>
         </div>
       </div>
@@ -51,18 +50,8 @@ async function getInfo() {
     resultSection.style.display = "block";
 
   } catch (err) {
-    console.error("Front-end Error:", err);
+    console.error("Front Error:", err);
     loading.style.display = "none";
     noResults.style.display = "block";
   }
-
-  document.getElementById("phoneInput").value = "";
-  document.getElementById("phoneInput").focus();
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("phoneInput").addEventListener("keypress", function (e) {
-    if (e.key === "Enter") getInfo();
-  });
-  document.getElementById("searchBtn").addEventListener("click", getInfo);
-});
