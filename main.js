@@ -22,25 +22,27 @@ async function getInfo() {
       body: JSON.stringify({ number: nu })
     });
 
-    if (!res.ok) throw new Error("خطأ في الخادم");
+    if (!res.ok) throw new Error("خطأ في الاتصال بالسيرفر");
 
     const person = await res.json();
     loading.style.display = "none";
 
-    // إعداد الأحرف الأولى من الاسم
-    let initials = "--";
-    if (person.name) {
-      const words = person.name.trim().split(" ");
+    // التحقق من وجود اسم، وإلا نضع اسم افتراضي
+    const displayName = person.name && person.name.trim() !== "" ? person.name : "اسم غير مسجل";
+    
+    // إعداد الأحرف الأولى بشكل آمن
+    let initials = "??";
+    if (displayName !== "اسم غير مسجل") {
+      const words = displayName.trim().split(/\s+/);
       initials = words[0].charAt(0).toUpperCase();
       if (words.length > 1) initials += words[1].charAt(0).toUpperCase();
     }
 
-    // عرض الاسم والرقم فقط
     resultCard.innerHTML = `
       <div class="result-header">
         <div class="result-avatar">${initials}</div>
         <div class="result-info">
-          <h2>${person.name || ""}</h2>
+          <h2>${displayName}</h2>
           <div class="result-phone">${person.number || nu}</div>
         </div>
       </div>
@@ -49,7 +51,7 @@ async function getInfo() {
     resultSection.style.display = "block";
 
   } catch (err) {
-    console.error(err);
+    console.error("Front-end Error:", err);
     loading.style.display = "none";
     noResults.style.display = "block";
   }
@@ -62,11 +64,5 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("phoneInput").addEventListener("keypress", function (e) {
     if (e.key === "Enter") getInfo();
   });
-
   document.getElementById("searchBtn").addEventListener("click", getInfo);
 });
-
-
-
-
-
