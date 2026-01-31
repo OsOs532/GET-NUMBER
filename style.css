@@ -6,7 +6,6 @@
 }
 
 :root {
-    /* الألوان الأساسية المطورة */
     --primary-color: #4f46e5;
     --primary-hover: #4338ca;
     --secondary-color: #64748b;
@@ -15,7 +14,7 @@
     --error-color: #ef4444;
     --warning-color: #f97316;
     
-    --text-primary: #f8fafc; /* تغيير للون فاتح ليتناسب مع الخلفية الداكنة */
+    --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
     --text-light: #94a3b8;
     
@@ -86,6 +85,10 @@ body::after { width: 400px; height: 400px; background: #7c3aed; bottom: -100px; 
 }
 
 /* --- صندوق البحث (Glassmorphism) --- */
+.search-section {
+    margin-bottom: 80px; /* زيادة المسافة هنا بين البحث والمميزات */
+}
+
 .search-container, .result-card, .no-results, .features-section {
     background: var(--glass-bg);
     backdrop-filter: blur(15px);
@@ -132,6 +135,14 @@ body::after { width: 400px; height: 400px; background: #7c3aed; bottom: -100px; 
 
 .phone-input::placeholder { color: var(--text-light); text-align: right; }
 
+.input-hint {
+    text-align: center; /* توسيط جملة التلميح */
+    width: 100%;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
 .search-btn {
     background: linear-gradient(135deg, var(--primary-color), #7c3aed);
     color: white;
@@ -158,6 +169,7 @@ body::after { width: 400px; height: 400px; background: #7c3aed; bottom: -100px; 
     position: relative;
     overflow: hidden;
     animation: fadeInUp 0.6s ease-out;
+    margin-bottom: 20px;
 }
 
 .result-avatar {
@@ -199,8 +211,8 @@ body::after { width: 400px; height: 400px; background: #7c3aed; bottom: -100px; 
 
 /* --- الفوتر والروابط الاجتماعية --- */
 footer {
-    margin-top: var(--spacing-2xl);
-    padding: var(--spacing-xl) 0;
+    margin-top: 80px; /* زيادة المسافة فوق الفوتر ليظهر في الأسفل بوضوح */
+    padding: var(--spacing-2xl) 0 var(--spacing-xl) 0;
     text-align: center;
     background: rgba(0, 0, 0, 0.2);
 }
@@ -221,6 +233,13 @@ footer {
 .social-icon:hover {
     transform: translateY(-5px);
     background: var(--primary-color);
+}
+
+.footer-text {
+    margin-top: 30px; /* زيادة المسافة لحقوق النشر لتنزل لأسفل الفوتر */
+    color: var(--text-light);
+    font-size: 0.9rem;
+    display: block;
 }
 
 /* --- الأنيميشن --- */
@@ -244,4 +263,5 @@ footer {
     .container { padding: 15px; }
     .logo-text { font-size: 1.8rem; }
     .search-container { padding: 20px; }
+    .search-section { margin-bottom: 60px; }
 }
