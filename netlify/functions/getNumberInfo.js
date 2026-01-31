@@ -1,8 +1,6 @@
-// getNumberInfo.js
 export async function handler(event, context) {
   try {
     let number;
-
     if (event.httpMethod === 'POST') {
       try {
         const body = JSON.parse(event.body);
@@ -16,8 +14,7 @@ export async function handler(event, context) {
     if (!number) {
       return {
         statusCode: 400,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ error: "Phone number required" })
+        body: JSON.stringify({ error: "رقم الهاتف مطلوب" })
       };
     }
 
@@ -26,68 +23,46 @@ export async function handler(event, context) {
     try {
       const response = await fetch(apiUrl, {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
           'Accept': 'application/json',
           'Referer': 'https://ebnelnegm.com/'
         }
       });
 
-      if (!response.ok) throw new Error(`API responded with status ${response.status}`);
+      if (!response.ok) throw new Error(`External API status: ${response.status}`);
+      
       const data = await response.json();
+      
+      // تحليل البيانات: هل هي مصفوفة أم كائن؟
+      // لو API رجع مصفوفة ناخد أول عنصر، لو كائن ناخده هو علطول
+      let finalPerson = Array.isArray(data) ? data[0] : data;
 
       return {
         statusCode: 200,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(data[0] || {}) // إرجاع العنصر الأول فقط
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(finalPerson || {})
       };
 
     } catch (apiError) {
-      console.error('API Error:', apiError.message);
+      console.error('API External Error:', apiError.message);
 
-      // بيانات احتياطية لو فشل الـ API
+      // الرد ببيانات احتياطية في حال تعطل الـ API الخارجي
       const cleanNumber = number.replace(/\D/g, '');
-      let carrier = "Vodafone EG";
-      if (cleanNumber.startsWith('011')) carrier = "Etisalat EG";
-      else if (cleanNumber.startsWith('012')) carrier = "Orange EG";
-      else if (cleanNumber.startsWith('015')) carrier = "WE";
-
-      let type = cleanNumber.startsWith('01') ? "mobile" : "landline";
-
-      const backupData = {
-        number: number,
-        carrier: carrier,
-        country: "Egypt",
-        countryCode: "20",
-        valid: cleanNumber.length >= 10,
-        type: type,
-        location: "Cairo",
-        internationalFormat: `+20${cleanNumber}`,
-        name: "",
-        message: "Data from API reserve",
-        timestamp: new Date().toISOString()
-      };
-
       return {
         statusCode: 200,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(backupData)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          number: number,
+          name: "", // نترك الاسم فارغ ليتعامل معه الفرونت إند
+          message: "Backup mode active"
+        })
       };
     }
 
   } catch (err) {
     return {
       statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        error: "An unexpected error occurred",
-        details: err.message
-      })
+      body: JSON.stringify({ error: "Internal Server Error", details: err.message })
     };
   }
 }
